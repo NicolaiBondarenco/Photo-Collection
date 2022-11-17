@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Collection } from './Components/Collection'
 import Pagination from './Components/Pagination'
 import Skeleton from './Components/Skeleton'
+import { CategoriesType, ObjectType } from './Types/AppType'
 import './index.scss'
 
-const _categories = [
+const _categories: CategoriesType[] = [
   { name: 'Все' },
   { name: 'Море' },
   { name: 'Горы' },
@@ -12,7 +13,7 @@ const _categories = [
   { name: 'Города' },
 ]
 
-function App() {
+const App: React.FC = () => {
   const [collection, setCollection] = useState([])
   const [category, setCategory] = useState([])
   const [activeItem, setActiveItem] = useState('Все')
@@ -37,9 +38,9 @@ function App() {
     getData()
   }, [])
 
-  const onClickCategories = (name, id) => {
+  const onClickCategories = (name: string, id: number) => {
     setActiveItem(name)
-    setCategory(collection.filter((el) => el.category === id))
+    setCategory(collection.filter((el: ObjectType) => el.category === id))
   }
 
   return (
@@ -70,24 +71,24 @@ function App() {
             })
           : activeItem === 'Все'
           ? needCoolection
-              ?.filter((el) =>
+              ?.filter((el: ObjectType) =>
                 el.name.toLowerCase().includes(searchValue.toLowerCase()),
               )
-              .map((el) => (
+              .map((el: ObjectType) => (
                 <Collection key={el.name} name={el.name} images={el.photos} />
               ))
           : category
-              .filter((el) =>
+              .filter((el: ObjectType) =>
                 el.name.toLowerCase().includes(searchValue.toLowerCase()),
               )
-              .map((el) => (
+              .map((el: ObjectType) => (
                 <Collection key={el.name} name={el.name} images={el.photos} />
               ))}
       </div>
       <Pagination
         collectionLength={collection.length}
         photosPerPage={photosPerPage}
-        onChangeNumPage={(num) => setPage(num)}
+        onChangeNumPage={(num: number) => setPage(num)}
       />
     </div>
   )

@@ -1,6 +1,6 @@
-import React from 'react'
+import { CollectionType } from '../Types/CollectionType'
 
-export function Collection({ name, images }) {
+export const Collection: React.FC<CollectionType> = ({ name, images }) => {
   return (
     <div className="collection">
       <img className="collection__big" src={images[0]} alt="Item" />

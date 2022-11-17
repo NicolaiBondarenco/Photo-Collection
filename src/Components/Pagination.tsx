@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { PaginationProps } from '../Types/PaginationType'
 
-const Pagination = ({ collectionLength, photosPerPage, onChangeNumPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  collectionLength,
+  photosPerPage,
+  onChangeNumPage,
+}) => {
   const [activeButton, setActiveButton] = useState(1)
 
   const buttons = []
@@ -8,7 +13,7 @@ const Pagination = ({ collectionLength, photosPerPage, onChangeNumPage }) => {
     buttons.push(i)
   }
 
-  const onChangePage = (num) => {
+  const onChangePage = (num: number) => {
     setActiveButton(num)
     onChangeNumPage(num)
   }
